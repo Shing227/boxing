@@ -1,0 +1,16 @@
+module z(in,out,rst);
+	input reg[7:0] in;
+	output reg[1:0] out;
+	input rst;
+	
+	always (in) begin
+		case (in)					  	
+			8'h41: out <= ;	//A -> 10
+			8'h53: out <= ;	//S -> 01
+			//8'h4a: out <= ;	//J -> 10
+			//8'h4b: out <= ;	//K -> 01
+		default: ;
+		endcase
+	end
+	
+endmodule

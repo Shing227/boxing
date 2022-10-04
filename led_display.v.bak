@@ -1,0 +1,45 @@
+module led_display(in,state,out,clk,rst);
+	input wire[2:0] in;
+	input wire[2:0] state;
+	output wire[4:0] out;
+	input rst;
+	
+	always @(posedge clk) begin
+		case(state)
+			2'b10 : begin // *00 -> 0*0 -> 00* 
+					case (in) 
+						out[0] = ~in[2] & ~in[1] & ~in[0] & rst;
+						out[1] = ~in[2] & ~in[1] &  in[0] & rst;
+						out[2] = ~in[2] &  in[1] & ~in[0] & rst;
+						out[3] = ~in[2] &  in[1] &  in[0] & rst;
+						out[4] =  in[2] & ~in[1] & ~in[0] & rst;
+					endcase
+				end
+			2'b11 : begin // 00* -> 0** -> *0*
+				out[0] = ~in[2] & ~in[1] & ~in[0] & rst;
+				out[1] = ~in[2] & ~in[1] &  in[0] & rst;
+				out[2] = ~in[2] &  in[1] & ~in[0] & rst;
+				out[3] = ~in[2] &  in[1] &  in[0] & rst;
+				out[4] =  1'b1 & rst;
+				end
+			2'b01 : begin // *** -> 0** -> 00* 
+				out[0] = ~in[2] & ~in[1] & ~in[0] & rst;
+				out[1] = ~in[2] & ~in[1] &  in[0] & rst;
+				out[2] = ~in[2] &  in[1] & ~in[0] & rst;
+				out[3] = ~in[2] &  in[1] &  in[0] & rst;
+				out[4] =  in[2] & ~in[1] & ~in[0] & rst;
+				end
+			2'b00 : begin // 00*
+				out[0] = 1'b0;
+				out[1] = 1'b0;
+				out[2] = 1'b0;
+				out[3] = 1'b0;
+				out[4] = 1'b1 & rst;
+				end
+			default :  begin
+			
+				end
+		endcase
+	end
+	
+endmodule

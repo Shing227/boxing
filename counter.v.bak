@@ -1,0 +1,4 @@
+module counter(input clkin,output clkout,input rst);
+	
+
+endmodule;

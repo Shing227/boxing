@@ -1,0 +1,10 @@
+module bus2line4(in,O3,O2,O1,O0)
+	input [3:0] in;
+	output O3,O2,O1,O0;
+	
+	assign O3 = in[3];
+	assign O2 = in[2];
+	assign O1 = in[1];
+	assign O0 = in[0];
+	
+endmodule

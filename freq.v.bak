@@ -1,0 +1,8 @@
+module freq(input clkin,output clkout,input rst);
+	parameter cycle = 500;
+	reg clkout;
+	always @(posedge clkin) begin
+		if(~rst) clkout <= 1'b0;
+		else clkout <= ~clkout;
+	end;
+endmodule;

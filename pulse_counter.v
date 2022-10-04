@@ -1,0 +1,24 @@
+module pulse_counter(in,out,inclk,outclk,rst);
+	parameter size_cin = 2;
+	input [size_cin-1:0] in;
+	output reg out;
+	input inclk,rst,outclk;
+	
+	reg [size_cin-1:0] num;
+	/*reg [size_cin-1:0] num_r;
+	always @ (posedge inclk or posedge rst) begin
+		if(rst) num <= 0;
+		else ;
+	end*/
+	
+	always @ (posedge outclk or posedge rst) begin
+		if(rst) begin 
+			num <= 0;
+			out <= 1'b1;
+		end
+		else begin
+			if(num == in) ;
+		end
+	end
+	
+endmodule
